@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Sistema2020.Models.Pais>
+
+@{
+    ViewData["Title"] = "Países";
+}
+
+<div class="row">
+    <div class="col-sm-9">
+        <br />
+        <h2>@ViewData["Title"]</h2>
+    </div>
+    <div class="col-sm-3">
+        <a asp-action="Create" class="btn btn-primary active">Novo</a>
+        <a asp-action="Search" class="btn btn-primary active">Pesquisa</a>
+        <a asp-action="Report" class="btn btn-primary active">Relatórios</a>
+    </div>
+</div>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

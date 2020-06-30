@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Usuario> SignInManager
+@inject UserManager<Usuario> UserManager
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="SignOut">Sair</a>
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Cadastros <span class="caret"></span></a>
+                <div class="dropdown-menu" aria-labelledby="themes">
+                    <a class="dropdown-item" href="../default/">Default</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-area="" asp-controller="Municipios" asp-action="Index">Municípios</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Estados" asp-action="Index">Estados</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Paises" asp-action="Index">Países</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+    <a class="nav-link text-light" data-toggle="modal" data-target="#loginModal">Login</a>
+    <partial name="Login" />
+    @*<ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a type="button" class="nav-link" data-toggle="modal" data-target="#loginModal">Login</a>
+            <partial name="Login" />
+        </li>
+    </ul>*@
+</div>
+}
